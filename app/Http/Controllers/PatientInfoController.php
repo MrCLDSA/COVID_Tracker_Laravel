@@ -17,6 +17,7 @@ class PatientInfoController extends Controller
         $request->validate(['name' => 'required',
                             'brgy_id' => 'required|exists:barangays,id',
                             'number' => 'required',
+                            "email" => 'nullable',
                             'case_type' => 'required',
                             'coronavirus_status'=>'required']);
 
@@ -49,6 +50,7 @@ class PatientInfoController extends Controller
                             'name' => 'required',
                             'brgy_id' => 'required|exists:barangays,id',
                             'number' => 'required',
+                            "email" => 'nullable',
                             'case_type' => 'required',
                             'coronavirus_status'=>'required']);
         $request_data = $request->all();

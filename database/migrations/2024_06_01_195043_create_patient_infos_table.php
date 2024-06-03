@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('brgy_id');
             $table->foreign('brgy_id')->references('id')->on('barangays')->onDelete('cascade');
             $table->string('number');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('case_type');
             $table->string('coronavirus_status');
         });
