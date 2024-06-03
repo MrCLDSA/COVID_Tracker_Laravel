@@ -119,8 +119,8 @@ let generate_report = () => {
             let negativecount = response.negativedata;
             $('#report').html("");
 
-            $('#report').append("<p class='text-white text-center'>PUI: " + pumcount +  "</p>");
-            $('#report').append("<p class='text-white text-center'>PUM: " + puicount +  "</p>");
+            $('#report').append("<p class='text-white text-center'>PUM: " + pumcount +  "</p>");
+            $('#report').append("<p class='text-white text-center'>PUI: " + puicount +  "</p>");
             $('#report').append("<p class='text-white text-center'>Positive on Covid: " + positivecount +  "</p>");
             $('#report').append("<p class='text-white text-center'>Negative on Covid: " + negativecount +  "</p>");
             
