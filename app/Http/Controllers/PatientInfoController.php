@@ -94,8 +94,7 @@ class PatientInfoController extends Controller
         $request_data = $request->all();
         $id_ref = $request_data['id'];
 
-        $coviddata = PatientInfo::with('barangay')->where('brgy_id', $id_ref)
-        ->where('coronavirus_status', 'NONE')->count();
+
 
         $activedata = PatientInfo::with('barangay')->where('brgy_id', $id_ref)
         ->where('coronavirus_status', 'ACTIVE')->count();
@@ -105,6 +104,8 @@ class PatientInfoController extends Controller
 
         $deathdata = PatientInfo::with('barangay')->where('brgy_id', $id_ref)
         ->where('coronavirus_status', 'DEATH')->count();
+
+        $coviddata = $activedata + $recovereddata + $deathdata;
 
         return response()->json(['coviddata'=>$coviddata, 'active'=>$activedata, 'recovered'=>$recovereddata, 'death'=>$deathdata]);
     } 
