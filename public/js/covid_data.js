@@ -3,6 +3,7 @@ let barangaylist = document.getElementById('barangaylist');
 let citylist = document.getElementById('citylist');
 let uniquedata = [];
 
+// Runs a GET to get a list of City IDs & Names.
 let get_city_dropdown_data = () => {
     let token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
     $.ajax({
@@ -21,6 +22,7 @@ let get_city_dropdown_data = () => {
     });
 }
 
+// Assigns all the city values to the citylist selection. Name -> option text while the option.value would hold the primary ID.
 let update_city_dropdown_data = (data) => {
 
     if (data){
@@ -36,12 +38,13 @@ let update_city_dropdown_data = (data) => {
 
         });
         first_data = data[0];
-        console.log(first_data);
+        // Assigns the first city on the list to a variable and triggers the get_barangay_method, passing its City ID.
         get_barangay_data(first_data.id);
     }
 
 }
 
+// The method receives City ID and then through the relationships, finds all the Barangays related to it.
 let get_barangay_data = (city_id) => {
     let token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
     $.ajax({
@@ -55,7 +58,7 @@ let get_barangay_data = (city_id) => {
         },
         success:function(response){
             let barangay_data = response.data;
-            console.log(barangay_data); 
+            // After receiving all the Barangays related to the Specific City ID - it is all added as options in a drop down via this function.
             update_barangay_dropdown_data(barangay_data)
         },
         error:function(xhr, status, error){
@@ -66,6 +69,7 @@ let get_barangay_data = (city_id) => {
 
 }
 
+// Assigns all the city values to the barangaylist selection. Name -> option text while the option.value would hold the primary ID.
 let update_barangay_dropdown_data = (data) => {
     let uniquedata_barangay = [];
     barangaylist.innerHTML = ''
@@ -87,6 +91,9 @@ let update_barangay_dropdown_data = (data) => {
 
 }
 
+// This function takes the section value of the current dropdown index (which contains the Primary ID of the Barangay)
+// and passes a POST to the PatientInfoController where it counts the number of Overall, Active, Recovered, and Deaths
+// in a specific Barangay ID.
 let generate_report = () => {
     let token = document.head.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -131,6 +138,7 @@ citylist.addEventListener('change', function(event) {
     get_barangay_data(selected_city_id);
 })
 
+// Runs the method within in order to get the list of cities.
 $(document).ready(function (){
     get_city_dropdown_data();
 })
