@@ -101,7 +101,7 @@ updateform.addEventListener('submit', function(event){
     let covid_status = "";
 
     if (selected_case_value === "POSITIVE"){
-        let covid_dropdown = document.getElementById('covidstatusselect');
+        let covid_dropdown = document.getElementById('covidstatusselectupdate');
         let selected_covid_index = covid_dropdown.options[covid_dropdown.selectedIndex];
         covid_status = selected_covid_index.value;
     }
